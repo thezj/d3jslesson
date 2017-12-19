@@ -45,12 +45,26 @@ let rects = svg.selectAll('.MyRect')
         let min = yScale.domain()[0]
         return yScale(min)
     })
+    .attr('fill', 'steelblue')
+    .on('mouseover', function (d, i) {
+        d3.select(this)
+            .transition()
+            .duration(100)
+            .attr('fill', 'yellow')
+    })
+    .on('mouseout', function (d, i) {
+        d3.select(this)
+            .transition()
+            .duration(500)
+            .attr('fill', 'steelblue')
+    })
     .transition()
     .delay((d, i) => i * 200)
     .duration(1000)
     .ease(d3.easeBounceOut)
     .attr('y', (d, i) => yScale(d))
     .attr('height', d => 400 - yScale(d) - 40)
+
 
 
 
